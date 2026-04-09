@@ -11,12 +11,24 @@ namespace SimpleLocalizedStrings
 {
     public static class LocalizationLoader
     {
+        /// <summary>
+        /// process given scriptable objects with LocalizedData fields<br />
+        /// will write field values to table collection by given locale code and table key
+        /// </summary>
+        /// <param name="localizedSOs">enumerable of scriptable objects with LocalizedData fields</param>
+        /// <returns>awaitable unitask</returns>
         public static async UniTask ProcessLocalizedSOsAsync(IEnumerable<LocalizedSO> localizedSOs)
         {
             foreach (var so in localizedSOs)
                 await ProcessLocalizedSOAsync(so);
         }
 
+        /// <summary>
+        /// process given scriptable object with LocalizedData fields<br />
+        /// will write field values to table collection by given locale code and table key
+        /// </summary>
+        /// <param name="localizedSO">scriptable object with LocalizedData fields</param>
+        /// <returns>awaitable unitask</returns>
         public static async UniTask ProcessLocalizedSOAsync(LocalizedSO localizedSO)
         {
             var locale = Utils.GetOrCreateLocale(localizedSO);

@@ -16,6 +16,12 @@ namespace SimpleLocalizedStrings
             LowerSnake
         }
 
+        /// <summary>
+        /// formats a given property name in camel case (e.g. myProperty1) to snake case
+        /// </summary>
+        /// <param name="baseName">base camel case name</param>
+        /// <param name="format">snake case format (upper or lower case)</param>
+        /// <returns>baseName formatted to snake case (e.g. MY_PROPERTY_1, my_property_1)</returns>
         public static string FormatName(string baseName, NameFormat format)
         {
             var name = CollapseWhitespaces(baseName);
@@ -75,6 +81,12 @@ namespace SimpleLocalizedStrings
             return name;
         }
 
+        /// <summary>
+        /// returns the locale by code inside localized scriptable object if it exists.<br />
+        /// creates, registers and returns the locale if it doesn't already exist
+        /// </summary>
+        /// <param name="so"></param>
+        /// <returns></returns>
         public static Locale GetOrCreateLocale(LocalizedSO so)
         {
             var locale = GetLocale(so.localIdCode);
