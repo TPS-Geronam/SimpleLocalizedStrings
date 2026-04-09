@@ -2,7 +2,7 @@ using System.Reflection;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
-namespace SimpleLocalizedSO
+namespace SimpleLocalizedStrings
 {
     public static class LocalizationLoader
     {

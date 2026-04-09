@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -6,7 +5,7 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.UIElements;
 
-namespace SimpleLocalizedSO.Editor
+namespace SimpleLocalizedStrings.Editor
 {
     [CustomPropertyDrawer(typeof(LocalizedData))]
     public class LocalizedDataStringDrawer : PropertyDrawer

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SimpleLocalizedSO
+namespace SimpleLocalizedStrings
 {
     public class LocalizedData : PropertyAttribute
     {

@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
-namespace SimpleLocalizedSO
+namespace SimpleLocalizedStrings
 {
     public static class Utils
     {

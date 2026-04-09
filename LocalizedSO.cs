@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.Localization.Settings;
-using static SimpleLocalizedSO.Utils;
+using static SimpleLocalizedStrings.Utils;
 
-namespace SimpleLocalizedSO
+namespace SimpleLocalizedStrings
 {
     public abstract class LocalizedSO : ScriptableObject
     {

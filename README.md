@@ -9,7 +9,8 @@ Last tested on Unity 6.3
 [drawio]()
 
 ## Dependencies
-- [Localization]() 
+- [Localization](https://docs.unity3d.com/Packages/com.unity.localization@1.5) 
+- [UniTask](https://github.com/cysharp/UniTask) for asynchronous events
 
 ## Usage
 
