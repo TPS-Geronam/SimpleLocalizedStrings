@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Tables;
 
@@ -19,9 +18,7 @@ namespace SimpleLocalizedStrings.Example
         [SerializeField]
         bool overwriteOldEntriesOnReload = true;
 
-        void OnEnable() => LocalizationSettings.SelectedLocaleChanged += Load;
-        void OnDisable() => LocalizationSettings.SelectedLocaleChanged -= Load;
-        void Load(Locale locale) => ProcessLocalizedSOs(localizedSOs);
+        public void Load() => ProcessLocalizedSOs(localizedSOs);
 
         void ProcessLocalizedSOs(IEnumerable<LocalizedSO> localizedSOs)
         {
