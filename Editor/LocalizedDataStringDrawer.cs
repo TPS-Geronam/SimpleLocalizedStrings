@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 namespace SimpleLocalizedSO.Editor
 {
-    [CustomPropertyDrawer(typeof(LocalizedDataString))]
+    [CustomPropertyDrawer(typeof(LocalizedData))]
     public class LocalizedDataStringDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -19,12 +19,12 @@ namespace SimpleLocalizedSO.Editor
 
             if (property.propertyType != SerializedPropertyType.String)
             {
-                Debug.LogError("Can only use the LocalizedDataString attribute on members of type string, string[] or List<string>");
+                Debug.LogError("Can only use the LocalizedData attribute on members of type string, string[] or List<string>");
                 return container;
             }
 
             var localSO = property.serializedObject.targetObject as LocalizedSO;
-            var localizedDataStringAttribute = attribute as LocalizedDataString;
+            var localizedDataStringAttribute = attribute as LocalizedData;
 
             container.Add(GetLocalTextField(localSO, property, localizedDataStringAttribute));
             if (localizedDataStringAttribute.addEntryButton)
@@ -33,7 +33,7 @@ namespace SimpleLocalizedSO.Editor
             return container;
         }
 
-        TextField GetLocalTextField(LocalizedSO so, SerializedProperty property, LocalizedDataString attribute)
+        TextField GetLocalTextField(LocalizedSO so, SerializedProperty property, LocalizedData attribute)
         {
             var locale = LocalizationSettings.SelectedLocale;
             return new()
@@ -48,59 +48,43 @@ namespace SimpleLocalizedSO.Editor
             LocalizedSO so,
             Locale locale,
             SerializedProperty property,
-            LocalizedDataString attribute)
+            LocalizedData attribute)
         {
-            var table = LocalizationSettings.StringDatabase.GetTable(so.localTableCollectionName, locale);
+            var table = LocalizationSettings.StringDatabase.GetTable(so.localStringTableCollectionName, locale);
             if (table == null)
-                return $"ERR: table {so.localTableCollectionName} not found";
+                return $"ERR: table {so.localStringTableCollectionName} not found";
 
-            var entryKey = GetEntryKey(property, attribute);
+            var entryKey = Utils.GetEntryKeyForSerializedProperty(property, attribute);
             var entry = table.GetEntry(entryKey);
             if (entry == null)
                 return $"ERR: entry {entryKey} not found in table {table.name}";
             return entry.Value;
         }
 
-        /// <summary>
-        /// if this changes then MyLocLoader.GetEntryKeyForField(..) also needs to change<br />
-        /// property format: myPropertyArray<br />
-        /// table entry: myPropertyArray_0, myPropertyArray_1, ...
-        /// </summary>
-        string GetEntryKey(SerializedProperty property, LocalizedDataString attribute)
+        Button GetAddButton(LocalizedSO so, SerializedProperty property, LocalizedData attribute)
         {
-            /* explicit flag in attribute needed as string, string[], List<string> 
-               will all be SerializedPropertyType.String and have property.isArray true */
-            if (property.isArray && attribute.isArray)
-            {
-                var fieldInfo = property.GetUnderlyingField();
-                // quick hack to get element index from name: e.g. "Element 0", "Element 1" ..
-                var index = int.Parse(property.displayName.Split(" ")[1]);
-                return $"{fieldInfo.Name}_{index}";
-            }
-            return property.name;
-        }
-
-        Button GetAddButton(LocalizedSO so, SerializedProperty property, LocalizedDataString attribute)
-        {
-            var entryKey = GetEntryKey(property, attribute);
+            var entryKey = Utils.GetEntryKeyForSerializedProperty(property, attribute);
             return new(() => HandleAddButton(so, entryKey, property))
             {
-                text = $"Add entry {entryKey} to table collection {so.localTableCollectionName}"
+                text = $"Add entry {entryKey} to table collection {so.localStringTableCollectionName}"
             };
         }
 
         void HandleAddButton(LocalizedSO so, string entryKey, SerializedProperty property)
         {
+            bool isString = property.propertyType == SerializedPropertyType.String;
             var locale = LocalizationSettings.AvailableLocales.GetLocale(new(so.localIdCode));
-            var table = LocalizationSettings.StringDatabase.GetTable(so.localTableCollectionName, locale);
-            if (table == null)
+
+            var stringTable = LocalizationSettings.StringDatabase.GetTable(so.localStringTableCollectionName, locale);
+
+            if (isString && stringTable == null)
             {
-                Debug.LogError($"Create a table collection with name {so.localTableCollectionName} first");
+                Debug.LogError($"Create a table collection with name {so.localStringTableCollectionName} first");
                 return;
             }
 
-            table.AddEntry(entryKey, property.stringValue);
-            Debug.Log($"Created {entryKey} in {table.name} with value {property.stringValue}");
+            stringTable.AddEntry(entryKey, property.stringValue);
+            Debug.Log($"Created {entryKey} in {stringTable.name} with value {property.stringValue}");
         }
     }
 }

@@ -6,11 +6,11 @@ namespace SimpleLocalizedSO.Example
     [CreateAssetMenu(menuName = "SimpleLocalizedSO/Example/LocalizedSO", fileName = "MyLocalizedSO.asset")]
     public class MyLocalizedSO : LocalizedSO
     {
-        [LocalizedDataString(isArray: true, addEntryButton: true)]
+        [LocalizedData(isArray: true, addEntryButton: true)]
         public List<string> stringData = new();
-        [LocalizedDataString(isArray: true)]
+        [LocalizedData(isArray: true)]
         public string[] stringDataArray = new string[0];
-        [LocalizedDataString]
+        [LocalizedData]
         public string myData;
     }
 }

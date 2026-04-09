@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MyLoc_FR
   m_EditorClassIdentifier: Assembly-CSharp::SimpleLocalizedSO.MyLocalizedSO
   localIdCode: fr
-  localTableCollectionName: my_loc
+  localStringTableCollectionName: my_loc
   stringData:
   - French text 1
   - French text 2
