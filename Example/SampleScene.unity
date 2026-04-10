@@ -151,7 +151,6 @@ MonoBehaviour:
   localizedSOs:
   - {fileID: 11400000, guid: 9dec6496abece1f42acb672d2424747d, type: 2}
   - {fileID: 11400000, guid: d14fd71e5ea95264e96b1da5ef3cb92d, type: 2}
-  overwriteOldEntriesOnReload: 1
 --- !u!4 &95626052
 Transform:
   m_ObjectHideFlags: 0
@@ -836,7 +835,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:f556360a284e55742b2f28bf64ff486d
     m_TableEntryReference:
-      m_KeyId: 114627197042688
+      m_KeyId: 751944015536128
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0

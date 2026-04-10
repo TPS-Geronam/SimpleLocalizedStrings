@@ -1,6 +1,6 @@
 # SimpleLocalizedStrings
 
-A simple system for importing localized string data from ScriptableObjects into localization tables for Unity3D. For setups where `LocalizedString` or `LocalizedAsset` are not practical to use, e.g. SOs created by importing data from external resources. Uses a `[LocalizedData]` attribute to map string fields to localization tables, with support for enumerables. Imports SOs into tables via the Localization package.
+A simple system for importing localized string data from ScriptableObjects into localization tables for Unity3D. For setups where `LocalizedString` or `LocalizedAsset` are not practical to use, e.g. SOs created by importing data from external resources. Uses a `[LocalizedData]` attribute to map string fields to localization tables, with support for enumerables. If in the editor, new table collections will be instantiated.
 
 Last tested on Unity 6.3
 
@@ -14,7 +14,7 @@ Last tested on Unity 6.3
 
 ## Usage
 
-1. Create your string table collection. Use the name of this collection as its key.
+1. (Optional in Editor) Create your string table collection. Use the name of this collection as its key.
 
 2. Create your localized ScriptableObject: holds localized string data. Configure the SO inside the inspector. Specify locale code and table collection key.
 
@@ -51,7 +51,7 @@ await LocalizationLoader.ProcessLocalizedSOAsync(localizedSOs.First())
 - nice for importing localizations while in the editor
 	- it may not make sense to populate tables runtime
 	- especially not in Update, as reflection is involved
-	- tables cannot be created during runtime ?
+	- table collections are created only while in the editor
 - Localization package uses Addressables, makes sense to make localization SOs also Addressable assets
 - once the SOs have been loaded into the tables, query the tables directly instead of getting text from the SOs
 
@@ -59,8 +59,8 @@ await LocalizationLoader.ProcessLocalizedSOAsync(localizedSOs.First())
 - import button
 	- calls localization loader
 	- reimports all LocalizedData strings
-	- writes SO's field values into localization tables by SO's table collection keys and locale codes
+	- writes SO's field values into localization table by SO's table collection key and locale code
 - label displays a localized string from a table
 - 2 SOs with some string data inside: english, french
 - 1 string table collection: my_loc
-	-> 2 tables: my_loc_en, my_loc_fr
+	- 2 tables: my_loc_en, my_loc_fr

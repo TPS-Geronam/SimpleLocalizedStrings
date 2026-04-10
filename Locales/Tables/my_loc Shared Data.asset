@@ -15,10 +15,6 @@ MonoBehaviour:
   m_TableCollectionName: my_loc
   m_TableCollectionNameGuidString: f556360a284e55742b2f28bf64ff486d
   m_Entries:
-  - m_Id: 114627197042688
-    m_Key: myData
-    m_Metadata:
-      m_Items: []
   - m_Id: 158561138933760
     m_Key: stringData_0
     m_Metadata:
@@ -33,6 +29,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 158670782234624
     m_Key: stringDataArray_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751944015536128
+    m_Key: myData
     m_Metadata:
       m_Items: []
   m_Metadata:
