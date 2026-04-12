@@ -4,7 +4,7 @@ A simple system for importing localized string data from ScriptableObjects into 
 
 Last tested on Unity 6.3
 
-<img width="648" height="625" alt="sls" src="https://github.com/user-attachments/assets/4c9e7d4e-109a-4220-b20b-fe6bfcd90a9d" />
+<img width="518" height="500" alt="sls" src="https://github.com/user-attachments/assets/4c9e7d4e-109a-4220-b20b-fe6bfcd90a9d" />
 
 [drawio](https://github.com/TPS-Geronam/SimpleLocalizedStrings/blob/main/sls.drawio)
 
