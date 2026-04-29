@@ -2,7 +2,7 @@
 
 A simple system for importing localized string data from ScriptableObjects into localization tables for Unity3D. For setups where `LocalizedString` or `LocalizedAsset` are not practical to use, e.g. SOs created by importing data from external resources. Uses a `[LocalizedData]` attribute to map string fields to localization tables, with support for enumerables. If in the editor, new table collections will be instantiated.
 
-Last tested on Unity 6.3
+Last tested on Unity 6.4
 
 <img width="518" height="500" alt="sls" src="https://github.com/user-attachments/assets/4c9e7d4e-109a-4220-b20b-fe6bfcd90a9d" />
 
